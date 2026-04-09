@@ -1,18 +1,18 @@
-# Use an official lightweight Python image
+# Herohackathon - Flat Structure Dockerfile
 FROM python:3.11-slim
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy requirement list and install
+# Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire project so the static web/ files and dispatcher/ logic is present
+# Copy everything into /app (Flat structure)
 COPY . .
 
-# Expose port (Cloud Run defaults to 8080)
+# Cloud Run defaults to PORT 8080
 EXPOSE 8080
 
-# Command to run FastAPI server on 0.0.0.0:8080
-CMD ["uvicorn", "dispatcher.server:app", "--host", "0.0.0.0", "--port", "8080"]
+# Run main.py using uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
