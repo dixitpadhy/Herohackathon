@@ -1,16 +1,23 @@
 import os
 import json
+from pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# Resolve paths absolutely to avoid Cloud Run path confusion
+BASE_DIR = Path(__file__).resolve().parent
+DATA_PATH = BASE_DIR / "data" / "HERO_data.json"
+WEB_DIR = BASE_DIR / "web"
+STATIC_JSON_JS_PATH = WEB_DIR / "HERO_data.js"
 
 app = FastAPI()
 
@@ -49,7 +56,10 @@ class DispatchResult(BaseModel):
 def get_hero_data():
     """Reads the JSON data from the central file."""
     try:
-        with open("data/HERO_data.json", "r", encoding="utf-8") as f:
+        if not DATA_PATH.exists():
+            print(f"Warning: Data file not found at {DATA_PATH}")
+            return {}
+        with open(DATA_PATH, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
         print(f"Error reading HERO_data.json: {e}")
@@ -154,9 +164,10 @@ async def save_data(request: Request):
     """Saves data from UI and mirrors it in web/HERO_data.js."""
     try:
         new_data = await request.json()
-        with open("data/HERO_data.json", "w", encoding="utf-8") as f:
+        DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(new_data, f, indent=2, ensure_ascii=False)
-        with open("web/HERO_data.js", "w", encoding="utf-8") as f:
+        with open(STATIC_JSON_JS_PATH, "w", encoding="utf-8") as f:
             f.write("window.HERO_DATA = " + json.dumps(new_data, ensure_ascii=False) + ";")
         return {"status": "success"}
     except Exception as e:
@@ -168,7 +179,7 @@ def root():
     return RedirectResponse(url="/dashboard/index.html")
 
 # Serve static frontend files
-app.mount("/dashboard", StaticFiles(directory="web", html=True), name="dashboard")
+app.mount("/dashboard", StaticFiles(directory=str(WEB_DIR), html=True), name="dashboard")
 
 if __name__ == "__main__":
     import uvicorn
