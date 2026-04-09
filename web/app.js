@@ -161,9 +161,11 @@ document.getElementById('btnOverrun').addEventListener('click', (e) => {
     if (evt) {
         document.getElementById('btnOverrun').innerText = 'Triggered: Delay Event';
         mockTasks = mockTasks.map(t => {
-            if (evt.affected_tasks.includes(t.rawId)) {
+            if (evt.affected_tasks.includes(t.rawId) && t.status !== 'delayed') {
                 const proj = window.HERO_DATA.system_data.projects.find(p => p.task && p.task.id === t.rawId);
-                if(proj && proj.task) proj.task.title = proj.task.title + ' [DELAYED]';
+                if(proj && proj.task && !proj.task.title.includes('[DELAYED]')) {
+                    proj.task.title = proj.task.title + ' [DELAYED]';
+                }
                 
                 return { ...t, title: t.title + ' [DELAYED]', status: 'delayed', date: t.date + ' (+2h)' };
             }
