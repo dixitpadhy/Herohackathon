@@ -119,14 +119,14 @@ def build_payload_from_hero_data(filepath: str) -> dict:
             tid = proj["task"]["id"]
             uncompleted_tasks.append({
                 "id": str(tid),
-                "customer_id": str(proj["customer_id"]),
+                "customer_id": str(proj.get("customer_id", "")),
                 "description": proj["task"]["title"],
                 "required_skills": skills_map.get(tid, []),
                 "business_value": biz_value_map.get(tid, "LOW"),
                 "is_flexible": flex_map.get(tid, True),
                 "scheduled_time": proj["task"]["due_date"],
-                "geographic_zone": proj["address"]["city"],
-                "currently_assigned_to": str(proj["task"]["target_user_id"])
+                "geographic_zone": proj.get("address", {}).get("city", "Unknown"),
+                "currently_assigned_to": str(proj["task"].get("target_user_id", "unassigned"))
             })
 
     return {
@@ -185,7 +185,7 @@ def run_dispatcher_for_single_task(filepath: str, task_id: str) -> str:
             contents=[system_prompt, user_prompt],
              config=types.GenerateContentConfig(
                 response_mime_type="application/json",
-                response_schema=DispatchResult,
+                response_schema=SingleTaskDispatchResult,
                 temperature=0.1
             )
         )

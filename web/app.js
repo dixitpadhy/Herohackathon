@@ -266,7 +266,14 @@ async function triggerAiCalculation() {
         
         if (data.error) throw new Error(data.error);
         
-        if (data.assignments && data.assignments.length > 0) {
+        // Handle the SingleTaskDispatchResult format (changed_user_id + explanation)
+        if (data.changed_user_id !== undefined) {
+            resolveAiSuggestion({
+                new_technician_id: data.changed_user_id,
+                scheduled_time: "Next available slot",
+                human_explanation: data.explanation || "No explanation provided."
+            });
+        } else if (data.assignments && data.assignments.length > 0) {
             resolveAiSuggestion(data.assignments[0]);
         } else {
             resolveAiSuggestion({
