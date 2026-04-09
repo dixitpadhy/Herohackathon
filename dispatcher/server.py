@@ -22,8 +22,8 @@ def execute_dispatcher(taskId: str = None):
     try:
         if not taskId:
             return {"error": "taskId query parameter is required"}
-        # Calls the function we built in agent.py which parses HERO_data.json
-        result_json = run_dispatcher_with_mock("data/HERO_data.json", taskId)
+        # Calls the function we built in agent.py which parses web/HERO_data.js
+        result_json = run_dispatcher_with_mock(taskId)
         return json.loads(result_json)
     except Exception as e:
         return {"error": str(e)}
@@ -36,7 +36,7 @@ async def execute_task_dispatcher(request: Request):
         if not task_id:
             return {"error": "No task_id provided"}
             
-        result_json = run_dispatcher_for_single_task("data/HERO_data.json", task_id)
+        result_json = run_dispatcher_for_single_task(task_id)
         return json.loads(result_json)
     except Exception as e:
         return {"error": str(e)}
