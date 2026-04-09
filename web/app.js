@@ -182,47 +182,47 @@ document.getElementById('btnFlood').addEventListener('click', (e) => {
     if (evt) {
         document.getElementById('btnFlood').innerText = 'Triggered: Urgent Task';
         
-        // Avoid adding multiple times
-        if(!window.HERO_DATA.system_data.projects.find(p => p.task && p.task.id === 999)) {
-            const newProject = {
-                id: 10050999,
-                name: "Service – Jane Smith (EMERGENCY)",
-                project_nr: "10050999",
-                type_id: 56961,
-                type_name: "🛠️ Service",
-                step_id: 684123,
-                step_name: "🆕 Offen",
-                measure_id: 6464,
-                measure_name: "Projekt",
-                partner_id: null,
-                partner_name: "UNASSIGNED",
-                customer_id: 6803553,
-                customer_name: "Jane Smith",
-                address: {
-                    street: "Mönckebergstraße 7",
-                    zipcode: "20095",
-                    city: "Hamburg"
-                },
-                task: {
-                    id: 999,
-                    title: "EMERGENCY: Immediate Repair",
-                    due_date: new Date().toISOString()
-                }
-            };
-            
-            // Push to core models
-            window.HERO_DATA.system_data.projects.unshift(newProject); // add to top
-            
-            // Push to Schema models
-            const ext = window.HERO_DATA.system_data.custom_data_layer.tasks_extension;
-            if (ext) {
-                if (ext.business_value_schema) ext.business_value_schema.mapping.push({ task_id: 999, business_value: 'HIGH' });
-                if (ext.required_skills_schema) ext.required_skills_schema.mapping.push({ task_id: 999, required_skills: ['repair', 'electrical'] });
+        const emergencyTaskId = 900000 + Math.floor(Math.random() * 99999);
+        const emergencyProjectId = 10090000 + Math.floor(Math.random() * 9999);
+        
+        const newProject = {
+            id: emergencyProjectId,
+            name: "Service – Jane Smith (EMERGENCY)",
+            project_nr: String(emergencyProjectId),
+            type_id: 56961,
+            type_name: "🛠️ Service",
+            step_id: 684123,
+            step_name: "🆕 Offen",
+            measure_id: 6464,
+            measure_name: "Projekt",
+            partner_id: null,
+            partner_name: "UNASSIGNED",
+            customer_id: 6803553,
+            customer_name: "Jane Smith",
+            address: {
+                street: "Mönckebergstraße 7",
+                zipcode: "20095",
+                city: "Hamburg"
+            },
+            task: {
+                id: emergencyTaskId,
+                title: "EMERGENCY: Immediate Repair #" + emergencyTaskId,
+                due_date: new Date().toISOString()
             }
-            
-            saveToServer();
-            loadDataAndRender();
+        };
+        
+        // Push to core models
+        window.HERO_DATA.system_data.projects.unshift(newProject);
+        
+        // Push to Schema models
+        const ext = window.HERO_DATA.system_data.custom_data_layer.tasks_extension;
+        if (ext) {
+            if (ext.business_value_schema) ext.business_value_schema.mapping.push({ task_id: emergencyTaskId, business_value: 'HIGH' });
+            if (ext.required_skills_schema) ext.required_skills_schema.mapping.push({ task_id: emergencyTaskId, required_skills: ['repair', 'electrical'] });
         }
+        
+        saveToServer();
+        loadDataAndRender();
     }
 });
 
