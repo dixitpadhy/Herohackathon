@@ -23,17 +23,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from pydantic import BaseModel, Field, ConfigDict
+
 # ---------------------------------------------------------
 # AI Schemas (Matches your latest Agent.py)
 # ---------------------------------------------------------
 class ReassignedTask(BaseModel):
+    model_config = ConfigDict(extra="allow")
     task_id: str
-    new_technician_id: Optional[str] = Field(description="The ID of the new tech, or 'unassigned' if none found")
+    new_technician_id: str = Field(description="The ID of the new tech, or 'unassigned' if none found")
     scheduled_time: str
     human_explanation: str = Field(description="A plain-english justification for why this move happened")
     is_rescheduled_to_tomorrow: bool = Field(description="True if dropping low-priority tasks off today's schedule")
 
 class DispatchResult(BaseModel):
+    model_config = ConfigDict(extra="allow")
     assignments: List[ReassignedTask]
     confidence_score_percent: int = Field(description="0-100 score of how confident AI is in this plan")
     needs_human_review: bool = Field(description="True if confidence is low, or high financial assets are affected")
