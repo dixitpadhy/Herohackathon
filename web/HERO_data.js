@@ -4,46 +4,46 @@
     "project_types": [
       {
         "id": 56962,
-        "name": "🔍 Wartung",
+        "name": "ðŸ” Wartung",
         "is_active": true,
         "workflow_steps": [
-          { "id": 684129, "name": "🚩 Wartung fällig", "is_active": true },
-          { "id": 684130, "name": "✔️ Abgeschlossen", "is_active": true },
-          { "id": 684131, "name": "📂 Archiviert", "is_active": true },
-          { "id": 684132, "name": "📆 Terminiert", "is_active": true },
-          { "id": 684133, "name": "✅ Erledigt", "is_active": true },
-          { "id": 684134, "name": "💰 Rechnung", "is_active": true }
+          { "id": 684129, "name": "ðŸš© Wartung fÃ¤llig", "is_active": true },
+          { "id": 684130, "name": "âœ”ï¸ Abgeschlossen", "is_active": true },
+          { "id": 684131, "name": "ðŸ“‚ Archiviert", "is_active": true },
+          { "id": 684132, "name": "ðŸ“† Terminiert", "is_active": true },
+          { "id": 684133, "name": "âœ… Erledigt", "is_active": true },
+          { "id": 684134, "name": "ðŸ’° Rechnung", "is_active": true }
         ]
       },
       {
         "id": 56961,
-        "name": "🛠️ Service",
+        "name": "ðŸ› ï¸ Service",
         "is_active": true,
         "workflow_steps": [
-          { "id": 684123, "name": "🆕 Offen", "is_active": true },
-          { "id": 684124, "name": "✔️ Abgeschlossen", "is_active": true },
-          { "id": 684125, "name": "📂 Archiviert", "is_active": true },
-          { "id": 684126, "name": "📅 Terminiert", "is_active": true },
-          { "id": 684127, "name": "✅ Erledigt", "is_active": true },
-          { "id": 684128, "name": "💰 Rechnung", "is_active": true }
+          { "id": 684123, "name": "ðŸ†• Offen", "is_active": true },
+          { "id": 684124, "name": "âœ”ï¸ Abgeschlossen", "is_active": true },
+          { "id": 684125, "name": "ðŸ“‚ Archiviert", "is_active": true },
+          { "id": 684126, "name": "ðŸ“… Terminiert", "is_active": true },
+          { "id": 684127, "name": "âœ… Erledigt", "is_active": true },
+          { "id": 684128, "name": "ðŸ’° Rechnung", "is_active": true }
         ]
       },
       {
         "id": 56960,
-        "name": "🧱 Projekte",
+        "name": "ðŸ§± Projekte",
         "is_active": true,
         "workflow_steps": [
-          { "id": 684112, "name": "🆕 Neue Projekte", "is_active": true },
-          { "id": 684113, "name": "👀 Begehung / Aufmaß", "is_active": true },
-          { "id": 684114, "name": "✍🏼 Angebotserstellung", "is_active": true },
-          { "id": 684115, "name": "✉️ Angebot verschickt", "is_active": true },
-          { "id": 684116, "name": "✅ Auftrag bestätigt", "is_active": true },
-          { "id": 684117, "name": "📅 Montageplanung", "is_active": true },
-          { "id": 684118, "name": "⚙️ In Umsetzung", "is_active": true },
-          { "id": 684119, "name": "📄 Schlussrechnung", "is_active": true },
-          { "id": 684120, "name": "✔️ Abgeschlossen", "is_active": true },
-          { "id": 684121, "name": "📂 Archiviert", "is_active": true },
-          { "id": 684122, "name": "‼️ Reklamation", "is_active": true }
+          { "id": 684112, "name": "ðŸ†• Neue Projekte", "is_active": true },
+          { "id": 684113, "name": "ðŸ‘€ Begehung / AufmaÃŸ", "is_active": true },
+          { "id": 684114, "name": "âœðŸ¼ Angebotserstellung", "is_active": true },
+          { "id": 684115, "name": "âœ‰ï¸ Angebot verschickt", "is_active": true },
+          { "id": 684116, "name": "âœ… Auftrag bestÃ¤tigt", "is_active": true },
+          { "id": 684117, "name": "ðŸ“… Montageplanung", "is_active": true },
+          { "id": 684118, "name": "âš™ï¸ In Umsetzung", "is_active": true },
+          { "id": 684119, "name": "ðŸ“„ Schlussrechnung", "is_active": true },
+          { "id": 684120, "name": "âœ”ï¸ Abgeschlossen", "is_active": true },
+          { "id": 684121, "name": "ðŸ“‚ Archiviert", "is_active": true },
+          { "id": 684122, "name": "â€¼ï¸ Reklamation", "is_active": true }
         ]
       }
     ],
@@ -70,7 +70,7 @@
           "skill_level": "master",
           "geographic_zone": {
             "current_zone": "Berlin-Mitte",
-            "last_task_address": "Berliner Straße 42, 10115 Berlin",
+            "last_task_address": "Berliner StraÃŸe 42, 10115 Berlin",
             "last_updated": "2025-08-01T09:00:00+00:00"
           }
         }
@@ -108,17 +108,17 @@
 
     "document_types": [
       { "id": 1227203, "name": "Kalkulation",        "base_type": "calculation" },
-      { "id": 1227204, "name": "Auftragsbestätigung","base_type": "confirmation" },
+      { "id": 1227204, "name": "AuftragsbestÃ¤tigung","base_type": "confirmation" },
       { "id": 1227205, "name": "Lieferschein",       "base_type": "delivery_note" },
       { "id": 1227206, "name": "Arbeitsbericht",     "base_type": "delivery_note" },
       { "id": 1227207, "name": "Mahnung",            "base_type": "dunning" },
       { "id": 1227208, "name": "Allgemein",          "base_type": "generic" },
       { "id": 1227209, "name": "Baustellenbericht",  "base_type": "information" },
       { "id": 1227210, "name": "Rechnung",           "base_type": "invoice" },
-      { "id": 1227211, "name": "Rechnung §13b",      "base_type": "invoice" },
+      { "id": 1227211, "name": "Rechnung Â§13b",      "base_type": "invoice" },
       { "id": 1227212, "name": "Gutschrift",         "base_type": "invoice" },
       { "id": 1227214, "name": "Brief",              "base_type": "letter" },
-      { "id": 1227215, "name": "Aufmaßdokument",     "base_type": "measurement" },
+      { "id": 1227215, "name": "AufmaÃŸdokument",     "base_type": "measurement" },
       { "id": 1227216, "name": "Angebot",            "base_type": "offer" },
       { "id": 1227217, "name": "Bestellschein",      "base_type": "order_form" },
       { "id": 1227218, "name": "Reparaturauftrag",   "base_type": "repair" },
@@ -130,7 +130,7 @@
       { "id": 419149, "name": "Umsetzung" },
       { "id": 419150, "name": "Vor-Ort-Termin" },
       { "id": 419151, "name": "Schlechtwetter" },
-      { "id": 419152, "name": "Büro" },
+      { "id": 419152, "name": "BÃ¼ro" },
       { "id": 419153, "name": "Besprechung" },
       { "id": 419154, "name": "Schule" }
     ],
@@ -147,7 +147,7 @@
         "category": "customer",
         "type": "private",
         "address": {
-          "street": "Berliner Straße 42",
+          "street": "Berliner StraÃŸe 42",
           "zipcode": "10115",
           "city": "Berlin",
           "country_id": 1
@@ -164,7 +164,7 @@
         "category": "customer",
         "type": "private",
         "address": {
-          "street": "Mönckebergstraße 7",
+          "street": "MÃ¶nckebergstraÃŸe 7",
           "zipcode": "20095",
           "city": "Hamburg",
           "country_id": 1
@@ -175,12 +175,12 @@
     "projects": [
       {
         "id": 10050014,
-        "name": "Projekt – John Doe",
+        "name": "Projekt â€“ John Doe",
         "project_nr": "10050014",
         "type_id": 56960,
-        "type_name": "🧱 Projekte",
+        "type_name": "ðŸ§± Projekte",
         "step_id": 684112,
-        "step_name": "🆕 Neue Projekte",
+        "step_name": "ðŸ†• Neue Projekte",
         "measure_id": 6464,
         "measure_name": "Projekt",
         "partner_id": 163178,
@@ -188,7 +188,7 @@
         "customer_id": 6803533,
         "customer_name": "John Doe",
         "address": {
-          "street": "Berliner Straße 42",
+          "street": "Berliner StraÃŸe 42",
           "zipcode": "10115",
           "city": "Berlin"
         },
@@ -242,12 +242,12 @@
       },
       {
         "id": 10050048,
-        "name": "Projekt – Jane Smith",
+        "name": "Projekt â€“ Jane Smith",
         "project_nr": "10050048",
         "type_id": 56960,
-        "type_name": "🧱 Projekte",
+        "type_name": "ðŸ§± Projekte",
         "step_id": 684112,
-        "step_name": "🆕 Neue Projekte",
+        "step_name": "ðŸ†• Neue Projekte",
         "measure_id": 6464,
         "measure_name": "Projekt",
         "partner_id": 163178,
@@ -255,7 +255,7 @@
         "customer_id": 6803553,
         "customer_name": "Jane Smith",
         "address": {
-          "street": "Mönckebergstraße 7",
+          "street": "MÃ¶nckebergstraÃŸe 7",
           "zipcode": "20095",
           "city": "Hamburg"
         },
@@ -301,12 +301,12 @@
       },
       {
         "id": 10050049,
-        "name": "Service – Jane Smith",
+        "name": "Service â€“ Jane Smith",
         "project_nr": "10050049",
         "type_id": 56961,
-        "type_name": "🛠️ Service",
+        "type_name": "ðŸ› ï¸ Service",
         "step_id": 684123,
-        "step_name": "🆕 Offen",
+        "step_name": "ðŸ†• Offen",
         "measure_id": 6464,
         "measure_name": "Projekt",
         "partner_id": 163178,
@@ -314,7 +314,7 @@
         "customer_id": 6803553,
         "customer_name": "Jane Smith",
         "address": {
-          "street": "Mönckebergstraße 7",
+          "street": "MÃ¶nckebergstraÃŸe 7",
           "zipcode": "20095",
           "city": "Hamburg"
         },
@@ -360,12 +360,12 @@
       },
       {
         "id": 10050050,
-        "name": "Wartung – Jane Smith",
+        "name": "Wartung â€“ Jane Smith",
         "project_nr": "10050050",
         "type_id": 56962,
-        "type_name": "🔍 Wartung",
+        "type_name": "ðŸ” Wartung",
         "step_id": 684129,
-        "step_name": "🚩 Wartung fällig",
+        "step_name": "ðŸš© Wartung fÃ¤llig",
         "measure_id": 6464,
         "measure_name": "Projekt",
         "partner_id": 163178,
@@ -373,13 +373,13 @@
         "customer_id": 6803553,
         "customer_name": "Jane Smith",
         "address": {
-          "street": "Mönckebergstraße 7",
+          "street": "MÃ¶nckebergstraÃŸe 7",
           "zipcode": "20095",
           "city": "Hamburg"
         },
         "task": {
           "id": 1678534,
-          "title": "Wartung Fällig - Jane Smith",
+          "title": "Wartung FÃ¤llig - Jane Smith",
           "due_date": "2025-08-17T00:00:00+00:00",
           "target_user_id": 315139,
           "business_value": "LOW",
@@ -492,7 +492,7 @@
               "partner_id": 163178,
               "name": "Cliford Nchotie",
               "current_zone": "Berlin-Mitte",
-              "last_task_address": "Berliner Straße 42, 10115 Berlin",
+              "last_task_address": "Berliner StraÃŸe 42, 10115 Berlin",
               "last_updated": "2025-08-01T09:00:00+00:00"
             }
           ]
@@ -548,4 +548,3 @@
 
   }
 }
-;
