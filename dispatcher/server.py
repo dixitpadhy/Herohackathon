@@ -1,13 +1,11 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 from dispatcher.agent import run_dispatcher_with_mock, run_dispatcher_for_single_task
-import json
+import json, os
 
 app = FastAPI()
-
-# Serve frontend statically
-app.mount("/static", StaticFiles(directory="web", html=True), name="static")
 
 # Allow the frontend to access this API
 app.add_middleware(
@@ -61,7 +59,15 @@ async def save_data(request: Request):
     except Exception as e:
         return {"error": str(e)}
 
+# Root redirect -> sends visitors to the dashboard
+@app.get("/")
+def root():
+    return RedirectResponse(url="/dashboard/index.html")
+
+# Serve frontend files (mounted AFTER API routes so /api/* takes priority)
+app.mount("/dashboard", StaticFiles(directory="web", html=True), name="dashboard")
+
 if __name__ == "__main__":
     import uvicorn
-    # Start the server on port 8000
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
