@@ -55,7 +55,7 @@ def run_dispatcher(payload_json: str, task_id: str) -> str:
     try:
         # Utilize Gemini with strict JSON Structured Outputs
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-2.0-flash",
             contents=[system_prompt, user_prompt],
              config=types.GenerateContentConfig(
                 response_mime_type="application/json",
@@ -190,7 +190,7 @@ def run_dispatcher_for_single_task(task_id: str) -> str:
 
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-2.0-flash",
             contents=[system_prompt, user_prompt],
              config=types.GenerateContentConfig(
                 response_mime_type="application/json",
