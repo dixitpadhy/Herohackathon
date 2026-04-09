@@ -13,7 +13,7 @@ from google.genai import types
 # Output Contract: Sent back to UI/Data Layer
 # ---------------------------------------------------------
 class SingleTaskDispatchResult(BaseModel):
-    changed_user_id: Optional[str] = Field(description="The ID of the new technician, or null if unassigned")
+    changed_user_id: str = Field(description="The ID of the new technician, or 'unassigned' if none found")
     explanation: str = Field(description="A plain-english justification for why this move happened")
 
 # ---------------------------------------------------------
