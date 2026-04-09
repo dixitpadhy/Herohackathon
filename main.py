@@ -36,19 +36,19 @@ from pydantic import BaseModel, Field, ConfigDict
 # AI Schemas (Matches your latest Agent.py)
 # ---------------------------------------------------------
 class ReassignedTask(BaseModel):
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="ignore")
     task_id: str
-    new_technician_id: str = Field(description="The ID of the new tech, or 'unassigned' if none found")
-    scheduled_time: str
-    human_explanation: str = Field(description="A plain-english justification for why this move happened")
-    is_rescheduled_to_tomorrow: bool = Field(description="True if dropping low-priority tasks off today's schedule")
+    new_technician_id: Optional[str] = Field(default="unassigned", description="The ID of the new tech")
+    scheduled_time: Optional[str] = Field(default="Next available slot", description="When the task will occur")
+    human_explanation: str = Field(default="AI could not generate a reasoning.", description="A justification")
+    is_rescheduled_to_tomorrow: Optional[bool] = Field(default=False, description="True if moved to future")
 
 class DispatchResult(BaseModel):
-    model_config = ConfigDict(extra="allow")
-    assignments: List[ReassignedTask]
-    confidence_score_percent: int = Field(description="0-100 score of how confident AI is in this plan")
-    needs_human_review: bool = Field(description="True if confidence is low, or high financial assets are affected")
-    executive_summary: str = Field(description="One paragraph summarizing the overall strategy chosen")
+    model_config = ConfigDict(extra="ignore")
+    assignments: List[ReassignedTask] = Field(default_factory=list)
+    confidence_score_percent: Optional[int] = Field(default=50)
+    needs_human_review: Optional[bool] = Field(default=False)
+    executive_summary: Optional[str] = Field(default="Standard dispatch protocol applied.")
 
 # ---------------------------------------------------------
 # Data Layer Logic
@@ -123,10 +123,28 @@ async def dispatch_task(request: Request):
         clean_task_id = raw_task_id.replace("TSK-", "")
         
         payload = build_dispatcher_payload()
-        target_task = next((t for t in payload["uncompleted_tasks"] if t["id"] == clean_task_id), None)
+        
+        # Fuzzy ID Matching (Resilient to String/Int and Whitespace mismatches)
+        def clean(val): return str(val).strip().replace("TSK-", "")
+        
+        target_task = None
+        target_id_clean = clean(clean_task_id)
+        
+        for t in payload["uncompleted_tasks"]:
+            if clean(t["id"]) == target_id_clean:
+                target_task = t
+                break
         
         if not target_task:
-            return {"error": f"Task {clean_task_id} not found"}
+            all_ids = [clean(t["id"]) for t in payload["uncompleted_tasks"]]
+            return {
+                "error": f"Task {target_id_clean} not found in current workload.",
+                "diagnostics": {
+                    "requested_id": target_id_clean,
+                    "available_ids": all_ids,
+                    "workload_count": len(all_ids)
+                }
+            }
             
         payload["target_task_to_reassign"] = target_task
         payload["trigger_event"] = {"event_type": "manual_reassignment", "message": f"Immediate dispatch for Task {clean_task_id}"}
